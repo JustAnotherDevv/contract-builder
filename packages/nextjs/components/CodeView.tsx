@@ -16,7 +16,6 @@ const CodeView = ({ variables, functions, functionStates, onSwitchToFlowView }) 
       console.log("Connected Nodes:", connectedNodes);
     });
 
-    // Generate Solidity code
     const generatedCode = generateSolidityCode("MyContract", variables, functions);
     setSolidityCode(generatedCode);
   }, [variables, functions, functionStates]);
