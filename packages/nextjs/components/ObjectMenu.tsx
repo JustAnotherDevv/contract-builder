@@ -171,6 +171,13 @@ const ObjectMenu = ({
           <Code size={18} className="mr-2" />
           Switch to Code View
         </button>
+        <button
+          // onClick={onSwitchToCodeView}
+          className="mt-4 bg-purple-500 text-white px-4 py-2 rounded w-full flex items-center justify-center"
+        >
+          <Code size={18} className="mr-2" />
+          Compile with Golewm
+        </button>
       </div>
       {/* <Controls /> */}
     </Panel>
