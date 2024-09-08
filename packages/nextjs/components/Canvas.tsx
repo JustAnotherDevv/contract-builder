@@ -32,6 +32,7 @@ const Canvas = () => {
   const [variables, setVariables] = useState([]);
   const [functionStates, setFunctionStates] = useState({});
   const [isCodeView, setIsCodeView] = useState(false);
+  const [contractName, setContractName] = useState("");
 
   const onConnect = useCallback(params => setEdges(eds => addEdge(params, eds)), [setEdges]);
 
@@ -82,6 +83,13 @@ const Canvas = () => {
     }));
     setEditingFunction(null);
   }, []);
+
+  const updateContractName = useCallback(
+    name => {
+      setContractName(name);
+    },
+    [contractName],
+  );
 
   const addFunction = useCallback(
     (name, type, inputs = []) => {
@@ -161,6 +169,7 @@ const Canvas = () => {
           functions={functions}
           functionStates={functionStates}
           onSwitchToFlowView={onSwitchToFlowView}
+          contractName={contractName}
         />
       </ReactFlowProvider>
     );
@@ -206,6 +215,8 @@ const Canvas = () => {
             addVariable={addVariable}
             removeVariable={removeVariable}
             onSwitchToCodeView={onSwitchToCodeView}
+            contractName={contractName}
+            updateContractName={updateContractName}
           />
           <Background />
         </ReactFlow>

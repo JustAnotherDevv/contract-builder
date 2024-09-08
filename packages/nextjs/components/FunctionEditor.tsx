@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import CounterNode from "./nodes/CounterNode";
 import CustomNode from "./nodes/CustomNode";
+import EquationNode from "./nodes/EquationNode";
+import IfNode from "./nodes/IfNode";
 import InputGetterNode from "./nodes/InputGetterNode";
 import InputSetterNode from "./nodes/InputSetterNode";
 import ReferenceNode from "./nodes/ReferenceNode";
@@ -22,6 +24,7 @@ const nodeTypes = {
   reference: ReferenceNode,
   inputGetter: InputGetterNode,
   inputSetter: InputSetterNode,
+  if: IfNode,
 };
 
 const FunctionEditor = ({
@@ -62,8 +65,6 @@ const FunctionEditor = ({
       const type = event.dataTransfer.getData("application/reactflow");
       const position = { x: event.clientX - 200, y: event.clientY - 40 };
 
-      const inputData = JSON.parse(event.dataTransfer.getData("node/data") || "{}");
-
       //   const newNode = {
       //     id: `${type}-${nodes.length + 1}`,
       //     type,
@@ -73,6 +74,8 @@ const FunctionEditor = ({
 
       let newNode;
       if (type === "inputGetter" || type === "inputSetter") {
+        const inputData = JSON.parse(event.dataTransfer.getData("node/data") || "{}");
+
         newNode = {
           id: `${type}-${nodes.length + 1}`,
           type,
@@ -254,6 +257,22 @@ const FunctionEditor = ({
                 draggable
               >
                 Counter Node
+              </div>
+
+              <div
+                className="draggable-item bg-yellow-500 text-white p-2 mb-2 rounded cursor-move"
+                onDragStart={event => onDragStart(event, "if")}
+                draggable
+              >
+                If Node
+              </div>
+
+              <div
+                className="draggable-item bg-blue-500 text-white p-2 mb-2 rounded cursor-move"
+                onDragStart={event => onDragStart(event, "equation")}
+                draggable
+              >
+                Equation Node
               </div>
 
               <h3 className="text-lg font-bold mt-4 mb-2">Variables</h3>

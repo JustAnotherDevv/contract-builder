@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { generateSolidityCode } from "../utils/codeGeneration";
 import ReactFlow, { Background, Panel } from "reactflow";
 
-const CodeView = ({ variables, functions, functionStates, onSwitchToFlowView }) => {
+const CodeView = ({ variables, functions, functionStates, onSwitchToFlowView, contractName }) => {
   const [solidityCode, setSolidityCode] = useState("");
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const CodeView = ({ variables, functions, functionStates, onSwitchToFlowView }) 
       console.log("Connected Nodes:", connectedNodes);
     });
 
-    const generatedCode = generateSolidityCode("MyContract", variables, functions);
+    const generatedCode = generateSolidityCode(contractName, variables, functions);
     setSolidityCode(generatedCode);
   }, [variables, functions, functionStates]);
 

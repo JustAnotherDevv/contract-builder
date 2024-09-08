@@ -12,6 +12,8 @@ const ObjectMenu = ({
   addVariable,
   removeVariable,
   onSwitchToCodeView,
+  contractName,
+  updateContractName,
 }) => {
   const [newFunctionName, setNewFunctionName] = useState("");
   const [newFunctionType, setNewFunctionType] = useState("void");
@@ -42,7 +44,7 @@ const ObjectMenu = ({
   return (
     <Panel position="top-left" style={{ background: "#f8f8f8", padding: "10px", borderRadius: "5px", width: "250px" }}>
       <div className="object-menu">
-        <h3 className="text-lg font-bold mb-2">Custom Nodes</h3>
+        {/* <h3 className="text-lg font-bold mb-2">Custom Nodes</h3>
         <div
           className="draggable-item bg-blue-500 text-white p-2 mb-2 rounded cursor-move"
           onDragStart={event => onDragStartHandler(event, "default")}
@@ -70,6 +72,18 @@ const ObjectMenu = ({
           draggable
         >
           Counter Node
+        </div> */}
+        <h3 className="text-lg font-bold mt-4 mb-2">Name</h3>
+        <div className="function-list">
+          <div className="function-item flex justify-between items-center mb-2 bg-gray-100 p-2 rounded">
+            <input
+              type="text"
+              value={contractName}
+              onChange={e => updateContractName(e.target.value)}
+              placeholder="Contract name"
+              className="p-1 border border-gray-300 rounded mb-1"
+            />
+          </div>
         </div>
 
         <h3 className="text-lg font-bold mt-4 mb-2">Functions</h3>
