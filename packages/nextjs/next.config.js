@@ -10,6 +10,13 @@ const nextConfig = {
     ignoreDuringBuilds: process.env.NEXT_PUBLIC_IGNORE_BUILD_ERROR === "true",
   },
   webpack: config => {
+    config.module.rules.push({
+      test: /\.m?js$/,
+      type: "javascript/auto",
+      resolve: {
+        fullySpecified: false,
+      },
+    });
     config.resolve.fallback = { fs: false, net: false, tls: false };
     config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
